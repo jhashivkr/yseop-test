@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-boot-docker-ms
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: jhashivkr
+Implementation-Vendor-Id: com.spring.boot.docker.microservices
+Build-Jdk: 1.8.0_91
+Implementation-URL: http://projects.spring.io/spring-boot/com.spring.b
+ oot.docker/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

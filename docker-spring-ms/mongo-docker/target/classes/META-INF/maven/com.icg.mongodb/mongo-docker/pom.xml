@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.icg.mongodb</groupId>
+	<artifactId>mongo-docker</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>mongo-docker</name>
+	<url>http://maven.apache.org</url>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.javadoc.reporting.version>2.7</maven.javadoc.reporting.version>
+		<releaseCandidate>1</releaseCandidate>
+
+		<java-version>1.8</java-version>
+
+		<commons.logging.version>1.1.1</commons.logging.version>
+		<log4j.version>1.2.16</log4j.version>
+		<slf4j.version>1.7.5</slf4j.version>
+
+		<!-- Spring -->
+		<spring.version>4.1.7.RELEASE</spring.version>
+
+		<hibernate.version>4.3.10.Final</hibernate.version>
+
+		<!-- AspectJ -->
+		<aspectj.version>1.7.4</aspectj.version>
+
+		<!-- activeJdbc -->
+		<activejdbc.version>1.4.9</activejdbc.version>
+
+		<!-- Web -->
+		<jsp.version>2.2</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet.version>3.0</servlet.version>
+		
+	</properties>
+	
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>sources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${context.path}</warName>
+				</configuration>
+			</plugin>
+
+			<!-- This plugin is used to create an executable jar of our project. This 
+				makes the running of the JAR on the Hadoop cluster easier since we don’t 
+				have to state the main class. -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
+				<configuration> <archive> <manifest> <addClasspath>true</addClasspath> <mainClass>net.pascalalma.hadoop.Dictionary</mainClass> 
+				</manifest> </archive> </configuration> </plugin> -->
+			<!-- The second plugin is necessary to make the created JAR compatible 
+				with the instances of the AWS EMR cluster. This AWS cluster comes with a 
+				JDK 1.6. If you omit this one the cluster will fail (I got a message like 
+				‘Unsupported major.minor version 51.0′). -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+				<configuration> <source>1.8</source> <target>1.8</target> </configuration> 
+				</plugin> -->
+
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+	</dependencies>
+</project>
